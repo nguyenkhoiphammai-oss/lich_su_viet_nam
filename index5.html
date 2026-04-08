@@ -1,0 +1,263 @@
+```html id="finalv1"
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lịch sử Việt Nam PRO</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: #f5f5f5;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background: #b71c1c;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 20px;
+        }
+
+        .logo {
+            font-weight: bold;
+        }
+
+        .menu a {
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
+        .menu a:hover {
+            color: yellow;
+        }
+
+        /* BANNER */
+        .banner {
+            position: relative;
+            height: 350px;
+        }
+
+        .banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(60%);
+        }
+
+        .banner-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: yellow;
+            text-align: center;
+        }
+
+        /* PAGE */
+        .page {
+            display: none;
+            padding: 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .active {
+            display: block;
+        }
+
+        /* CARD */
+        .card {
+            background: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+            cursor: pointer;
+        }
+
+        /* TIMELINE */
+        .timeline {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+        }
+
+        .timeline div {
+            min-width: 250px;
+            background: #ffe082;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        /* MAP */
+        .map img {
+            width: 350px;
+            display: block;
+            margin: auto;
+        }
+
+        /* BUTTON */
+        button {
+            padding: 8px;
+            margin: 5px;
+            background: #b71c1c;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: #212121;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div class="logo">🇻🇳 Lịch sử Việt Nam</div>
+        <div class="menu">
+            <a onclick="showPage('home')">Trang chủ</a>
+            <a onclick="showPage('timeline')">Timeline</a>
+            <a onclick="showPage('map')">Bản đồ</a>
+            <a onclick="showPage('quiz')">Quiz</a>
+            <a onclick="showPage('exam')">Thi thử</a>
+        </div>
+    </div>
+
+    <!-- HOME -->
+    <div id="home" class="page active">
+
+        <div class="banner">
+            <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Hung_Kings_Temple.jpg/1200px-Hung_Kings_Temple.jpg">
+            <div class="banner-text">
+                <h1>LỊCH SỬ VIỆT NAM</h1>
+                <p>Dân tộc – Truyền thống – Tự hào</p>
+            </div>
+        </div>
+
+        <h2>Các thời kỳ</h2>
+
+        <div class="card" onclick="showDetail('vanlang')">Văn Lang - Âu Lạc</div>
+        <div class="card" onclick="showDetail('bacthuoc')">Thời Bắc thuộc</div>
+        <div class="card" onclick="showDetail('phongkien')">Thời phong kiến</div>
+        <div class="card" onclick="showDetail('hiendai')">Thời hiện đại</div>
+
+        <div id="detail"></div>
+
+    </div>
+
+    <!-- TIMELINE -->
+    <div id="timeline" class="page">
+        <h2>Timeline lịch sử</h2>
+
+        <div class="timeline">
+            <div><img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Hung_Kings_Temple.jpg/200px-Hung_Kings_Temple.jpg"><br>Văn
+                Lang</div>
+            <div><img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Hai_Ba_Trung.jpg/200px-Hai_Ba_Trung.jpg"><br>Hai
+                Bà Trưng</div>
+            <div><img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Ho_Chi_Minh_1946.jpg/200px-Ho_Chi_Minh_1946.jpg"><br>1945
+            </div>
+        </div>
+    </div>
+
+    <!-- MAP -->
+    <div id="map" class="page map">
+        <h2>Bản đồ theo thời kỳ</h2>
+
+        <button onclick="changeMap('vanlang')">Văn Lang</button>
+        <button onclick="changeMap('phongkien')">Phong kiến</button>
+        <button onclick="changeMap('hiendai')">Hiện đại</button>
+
+        <img id="mapImg"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Vietnam_location_map.svg/350px-Vietnam_location_map.svg.png">
+    </div>
+
+    <!-- QUIZ -->
+    <div id="quiz" class="page">
+        <h2>Quiz nâng cao</h2>
+
+        <p>Ngô Quyền đánh bại quân Nam Hán ở đâu?</p>
+        <button onclick="quiz(true)">Bạch Đằng</button>
+        <button onclick="quiz(false)">Sông Hồng</button>
+
+        <p id="quizResult"></p>
+    </div>
+
+    <!-- EXAM -->
+    <div id="exam" class="page">
+        <h2>Thi thử</h2>
+
+        <p>1. Ai lãnh đạo khởi nghĩa Lam Sơn?</p>
+        <button onclick="answer(true)">Lê Lợi</button>
+        <button onclick="answer(false)">Trần Hưng Đạo</button>
+
+        <p>2. Năm Việt Nam tuyên bố độc lập?</p>
+        <button onclick="answer(true)">1945</button>
+        <button onclick="answer(false)">1975</button>
+
+        <p id="score"></p>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <h3>Giới thiệu</h3>
+        <p>Họ tên: Mai Phạm Khôi Nguyên</p>
+        <p>Đây là website tìm hiểu lịch sử Việt Nam do em thiết kế nhằm phục vụ học tập và nâng cao kiến thức.</p>
+    </div>
+
+    <script>
+        function showPage(id) {
+            document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+            document.getElementById(id).classList.add("active");
+        }
+
+        const data = {
+            vanlang: "Nhà nước đầu tiên, vua Hùng.",
+            bacthuoc: "Hơn 1000 năm Bắc thuộc.",
+            phongkien: "Thời kỳ phát triển mạnh mẽ.",
+            hiendai: "Độc lập và phát triển."
+        };
+
+        function showDetail(key) {
+            document.getElementById("detail").innerHTML =
+                "<div class='card'>" + data[key] + "</div>";
+        }
+
+        function quiz(correct) {
+            document.getElementById("quizResult").innerHTML =
+                correct ? "✅ Đúng" : "❌ Sai";
+        }
+
+        let score = 0;
+        function answer(correct) {
+            if (correct) score++;
+            document.getElementById("score").innerHTML = "Điểm: " + score;
+        }
+
+        function changeMap(type) {
+            const img = document.getElementById("mapImg");
+            if (type == "vanlang") img.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Vietnam_location_map.svg/350px-Vietnam_location_map.svg.png";
+            if (type == "phongkien") img.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Dai_Viet_map.png/350px-Dai_Viet_map.png";
+            if (type == "hiendai") img.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Vietnam_location_map.svg/350px-Vietnam_location_map.svg.png";
+        }
+    </script>
+
+</body>
+
+</html>
+```
